@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Заявки - Центр Притяжения</title>
+    <meta name="description" content="Внутренняя панель заявок центра детского развития.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="staff-body">
+    <header class="staff-shell staff-topbar" data-mobile-header>
+      <a class="brand" href="index.html" aria-label="На сайт Центр Притяжения">
+        <span class="brand-mark"><img src="logo.png" alt="" data-brand-logo></span>
+        <span>Центр Притяжения</span>
+      </a>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" aria-label="Переключить темную тему">
+          <span class="theme-toggle-icon">☀</span>
+        </button>
+        <button class="account-pill" type="button" data-account-name data-profile-open hidden></button>
+        <button class="login-button ghost" type="button" data-logout>Выйти</button>
+        <a class="header-button" href="index.html">На сайт</a>
+      </div>
+    </header>
+
+    <main class="staff-shell dashboard">
+      <section class="dashboard-hero reveal">
+        <div>
+          <p class="eyebrow">Панель сотрудников</p>
+          <h1>Заявки и быстрые задачи</h1>
+          <p>
+            Просматривайте новые обращения, меняйте статус и быстро связывайтесь с родителями.
+          </p>
+        </div>
+        <div class="dashboard-date">
+          <span>Сегодня</span>
+          <strong>30 июня</strong>
+        </div>
+      </section>
+
+      <section class="dashboard-stats reveal" aria-label="Статистика заявок">
+        <article>
+          <span>Всего заявок</span>
+          <strong data-stat="total">0</strong>
+        </article>
+        <article>
+          <span>Новые</span>
+          <strong data-stat="new">0</strong>
+        </article>
+        <article>
+          <span>На связи</span>
+          <strong data-stat="contacted">0</strong>
+        </article>
+        <article>
+          <span>Записаны</span>
+          <strong data-stat="scheduled">0</strong>
+        </article>
+      </section>
+      
+      <section class="staff-layout">
+        <aside class="staff-panel reveal">
+          <h2>Фильтр</h2>
+          <div class="filter-group" role="group" aria-label="Фильтр заявок">
+            <button class="filter-button active" type="button" data-filter="all">Все</button>
+            <button class="filter-button" type="button" data-filter="new">Новые</button>
+            <button class="filter-button" type="button" data-filter="contacted">На связи</button>
+            <button class="filter-button" type="button" data-filter="scheduled">Записаны</button>
+          </div>
+          <label class="staff-search">
+            <span>Поиск</span>
+            <input type="search" placeholder="Имя, телефон, программа" data-search>
+          </label>
+          <button class="button secondary staff-clear" type="button" data-refresh>
+            Обновить заявки
+          </button>
+        </aside>
+
+        <section class="staff-panel reveal">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Очередь</p>
+              <h2>Список заявок</h2>
+            </div>
+            <span class="live-pill">Обновляется с сервера</span>
+          </div>
+          <div class="lead-list" data-lead-list></div>
+        </section>
+      </section>
+
+      <section class="staff-panel employees-admin-panel reveal" data-super-only hidden>
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Команда</p>
+            <h2>Добавить сотрудника</h2>
+          </div>
+          <span class="live-pill">Из базы аккаунтов</span>
+        </div>
+        <form class="employee-form" data-employee-form>
+          <label>
+            <span>Аккаунт</span>
+            <select name="userId" data-employee-user>
+              <option value="">Без привязки к аккаунту</option>
+            </select>
+          </label>
+          <label>
+            <span>ФИО</span>
+            <input type="text" name="name" placeholder="Например: Иван Иванов" required>
+          </label>
+          <label>
+            <span>Роль</span>
+            <input type="text" name="role" placeholder="Например: педагог английского" required>
+          </label>
+          <p class="form-status" data-employee-status hidden></p>
+          <button class="button primary" type="submit">Добавить в сотрудники</button>
+        </form>
+        <div class="employees-admin-list" data-employees-admin-list></div>
+      </section>
+
+      <section class="staff-panel users-panel reveal" data-super-only hidden>
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Аккаунты</p>
+            <h2>Пользователи сайта</h2>
+          </div>
+          <span class="live-pill">Роли из базы</span>
+        </div>
+        <div class="users-list" data-users-list></div>
+      </section>
+
+      <section class="staff-panel logo-admin-panel reveal" data-super-only hidden>
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Оформление</p>
+            <h2>Логотип сайта</h2>
+          </div>
+          <span class="live-pill">Главная миниатюра</span>
+        </div>
+        <form class="admin-form logo-form" data-logo-form>
+          <label class="file-upload">
+            <span>Фотография</span>
+            <input type="file" name="logo" accept="image/*" data-logo-file data-file-input>
+            <span class="file-control">
+              <span class="file-button">Выбрать изображение</span>
+              <span class="file-name" data-file-name>Файл не выбран</span>
+            </span>
+          </label>
+          <div class="logo-preview-field">
+            <span>Миниатюра</span>
+            <div class="logo-preview brand-mark">
+              <img src="logo.png" alt="" data-logo-preview>
+            </div>
+          </div>
+          <label>
+            <span>Масштаб</span>
+            <input type="range" name="zoom" min="1" max="3" step="0.05" value="1" data-logo-zoom>
+          </label>
+          <label>
+            <span>Позиция по горизонтали</span>
+            <input type="range" name="x" min="0" max="100" step="1" value="50" data-logo-x>
+          </label>
+          <label>
+            <span>Позиция по вертикали</span>
+            <input type="range" name="y" min="0" max="100" step="1" value="50" data-logo-y>
+          </label>
+          <p class="form-status" data-logo-status hidden></p>
+          <button class="button primary" type="submit">Сохранить логотип</button>
+        </form>
+      </section>
+
+      <section class="staff-panel events-admin-panel reveal">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">События</p>
+            <h2>Добавить событие</h2>
+          </div>
+          <span class="live-pill">Для сайта</span>
+        </div>
+        <form class="admin-form" data-event-form>
+          <label>
+            <span>Название</span>
+            <input type="text" name="title" placeholder="Например: День открытых дверей" required>
+          </label>
+          <label>
+            <span>Дата</span>
+            <input type="date" name="date" required>
+          </label>
+          <label class="wide-field">
+            <span>Описание</span>
+            <textarea name="description" placeholder="Что будет на событии" required></textarea>
+          </label>
+          <label>
+            <span>Контакты для записи</span>
+            <input type="text" name="contacts" placeholder="+7 (909) 369-19-09">
+          </label>
+          <label class="file-upload">
+            <span>Фотография</span>
+            <input type="file" name="photo" accept="image/*" data-file-input>
+            <span class="file-control">
+              <span class="file-button">Выбрать изображение</span>
+              <span class="file-name" data-file-name>Файл не выбран</span>
+            </span>
+          </label>
+          <p class="form-status" data-event-status hidden></p>
+          <button class="button primary" type="submit">Добавить событие</button>
+        </form>
+        <div class="events-admin-list" data-events-admin-list></div>
+      </section>
+
+      <section class="staff-panel links-admin-panel reveal" data-super-only hidden>
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Ссылки</p>
+            <h2>Полезные страницы</h2>
+          </div>
+          <span class="live-pill">Только главный админ</span>
+        </div>
+        <form class="admin-form" data-link-form>
+          <label>
+            <span>Название</span>
+            <input type="text" name="title" placeholder="Например: Группа ВКонтакте" required>
+          </label>
+          <label>
+            <span>Ссылка</span>
+            <input type="url" name="url" placeholder="https://..." required>
+          </label>
+          <label class="wide-field">
+            <span>Описание</span>
+            <textarea name="description" placeholder="Коротко, куда ведет ссылка"></textarea>
+          </label>
+          <p class="form-status" data-link-status hidden></p>
+          <button class="button primary" type="submit">Добавить ссылку</button>
+        </form>
+        <div class="links-admin-list" data-links-admin-list></div>
+      </section>
+
+      <section class="staff-panel bugs-admin-panel reveal" data-super-only hidden>
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Ошибки</p>
+            <h2>Сообщения пользователей</h2>
+          </div>
+          <span class="live-pill">Только главный админ</span>
+        </div>
+        <div class="bugs-admin-list" data-bugs-list></div>
+      </section>
+    </main>
+
+    <div class="login-modal" data-profile-modal hidden>
+      <div class="login-backdrop" data-profile-close></div>
+      <section class="login-dialog" role="dialog" aria-modal="true" aria-labelledby="profile-title">
+        <button class="course-close" type="button" data-profile-close aria-label="Закрыть">×</button>
+        <p class="eyebrow">Профиль</p>
+        <h2 id="profile-title">Фото и имя</h2>
+        <form class="login-form" data-profile-form>
+          <div class="profile-preview" data-profile-preview></div>
+          <label>
+            <span>Имя</span>
+            <input type="text" name="name" placeholder="Ваше имя" autocomplete="name" required>
+          </label>
+          <label class="file-upload">
+            <span>Фотография профиля</span>
+            <input type="file" name="avatar" accept="image/*" data-profile-avatar data-file-input>
+            <span class="file-control">
+              <span class="file-button">Выбрать изображение</span>
+              <span class="file-name" data-file-name>Файл не выбран</span>
+            </span>
+          </label>
+          <p class="login-error" data-profile-status hidden></p>
+          <button class="button primary" type="submit">Сохранить профиль</button>
+        </form>
+      </section>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="staff.js"></script>
+  </body>
+</html>
